@@ -48,62 +48,61 @@
 
 	
 
-  function check_event_key(e:Event){
-    let target = e.target as HTMLInputElement
-    if (e.key === "Enter"){
-      new Line(target.parentNode)
-      return true
-    }
-    return false
-  }
+  // function check_event_key(e:Event){
+  //   let target = e.target as HTMLInputElement
+    
+  //   if (e.key === "Enter"){
+  //     new Line(target.parentNode)
+  //     return true
+  //   }
+  //   return false
+  // }
 
   class Line {
     node : HTMLElement
     raw_content: string = ""
 
     on_focus = () => {
+      console.log(this)
       this.node.innerHTML = this.raw_content
     }
-
+    
     on_lose_focus = () => {
+      this.raw_content = this.node.innerText
       this.node.innerHTML = markdownit.render(this.raw_content)
     }
 
-    on_input = (e) => {
-      let eve = check_event_key(e)
-      if (!eve){
-        this.raw_content = this.node.innerText
-      }
-    }
-
     constructor(target:HTMLElement){
-      this.node = document.createElement("span")
-      this.node.setAttribute("spellcheck","true")
-      this.node.setAttribute("role","textbox")
-      this.node.setAttribute("contenteditable","true")
+      this.node = target
+      this.node.setAttribute("tabindex","-1")
+      this.raw_content = target.innerText
       this.node.onfocus = this.on_focus
+      this.node.oninput = this.on_focus
       this.node.onblur = this.on_lose_focus
-      this.node.onkeydown = (e) => this.on_input(e)
-
-      target.appendChild(this.node)
-      this.node.focus()
     }   
   }
 
-  function func2 (e:Event){
+  function checkdivs(e:Event){
     let target = e.target as HTMLInputElement
-    if (target.children.length > 0){
-        target.children[target.children.length-1].focus()
-    }
-    else{
-        new Line(target)
-    }
-  }
+    if (target.id !== "editor") {target = target.parentElement}
 
+    if (target.children.length === 0){
+        let div = document.createElement("div")
+        target.appendChild(div)
+        div.innerHTML = "<br/>"
+    }
+    for (let child of target.children) {
+        if (! child.onfocus ){
+          new Line(child)
+        }
+    }
+    target.children[target.children.length-1].focus()
+  }
+  let debug = console.log
 </script>
 
 <template>
-  <div class="editor" @click="func2"></div>
+  <div contenteditable="true" spellcheck="true" id="editor" class="editor" @input="debug" @click="checkdivs"></div>
 </template>
 
 <style>
@@ -119,7 +118,7 @@
     width:100%;
     display: block;
   }
-  span:focus{
+  .editor > *:focus{
     border: unset;
     outline: unset;
   }
