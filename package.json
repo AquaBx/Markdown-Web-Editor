@@ -9,9 +9,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "tauri": "tauri"
-
   },
   "dependencies": {
+    "css.gg": "^2.0.0",
     "highlight.js": "^11.7.0",
     "markdown-it": "^13.0.1",
     "markdown-it-emoji": "^2.0.2",

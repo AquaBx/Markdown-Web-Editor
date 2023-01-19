@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { SVG } from 'css.gg'
 
 let input = (e) => {
   let target = e.target
@@ -11,13 +12,17 @@ let del = (e) => {
   e.target.parentNode.parentNode.remove()
 }
 
+
+
 </script>
 
 <template>
     <div class="line">
-        <div class="actions">
+{{SVG}}        <div class="actions" tabindex="-1">
           <button @click="del">delete</button>
-        </div>
+          <button @click="">insert before</button>
+          <button @click="">insert after</button>
+      </div>
         <div @input="input" class="input empty" tabindex="-1" placeholder="..." data-content-editable-leaf="true" contenteditable="true"></div>
     </div>
 </template>
@@ -25,11 +30,31 @@ let del = (e) => {
 <style scoped>
 
 .line {
-  display: flex;
+  position: relative;
 }
 
 .line .input{
-  flex:auto;
 }
+
+.actions{
+  position: absolute;
+  left:-50px;
+  width:50px;
+  aspect-ratio:1/1;
+
+}
+.actions *{
+  display: none;
+}
+
+.actions:focus-within * {
+  display: block;
+}
+
+.actions:hover::after {
+  content:"show menu"
+}
+
+
 
 </style>
