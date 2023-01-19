@@ -1,4 +1,4 @@
-import EditorVue from '@/views/Editor.vue'
+import EditorVue from '../views/Editor.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
