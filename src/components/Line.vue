@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SVG } from 'css.gg'
+import { Icon } from '@iconify/vue';
 
 let input = (e) => {
   let target = e.target
@@ -18,11 +18,13 @@ let del = (e) => {
 
 <template>
     <div class="line">
-{{SVG}}        <div class="actions" tabindex="-1">
+        <Icon icon="carbon:overflow-menu-horizontal" />
+
+        <div class="actions" tabindex="-1">
           <button @click="del">delete</button>
           <button @click="">insert before</button>
           <button @click="">insert after</button>
-      </div>
+        </div>
         <div @input="input" class="input empty" tabindex="-1" placeholder="..." data-content-editable-leaf="true" contenteditable="true"></div>
     </div>
 </template>
