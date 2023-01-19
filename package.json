@@ -11,6 +11,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@iconify/vue": "^4.0.2",
     "css.gg": "^2.0.0",
     "highlight.js": "^11.7.0",
     "markdown-it": "^13.0.1",
