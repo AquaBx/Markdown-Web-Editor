@@ -5,7 +5,7 @@ import { ref,defineProps } from 'vue';
 import md from 'markdown-it';
 import hljs from 'highlight.js'
 import mdhljs from 'markdown-it-highlightjs';
-import mk from 'markdown-it-katex';
+import mk from '@aquabx/markdown-it-katex';
 import mdemoji from 'markdown-it-emoji';
 
 let mdd = md({
