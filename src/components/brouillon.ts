@@ -1,8 +1,11 @@
-// import md from 'markdown-it';
-  // import hljs from 'highlight.js'
-  // import mdhljs from 'markdown-it-highlightjs';
-  // import mk from 'markdown-it-katex';
-  // import mdemoji from 'markdown-it-emoji';const markdownit = md({
+import md from 'markdown-it';
+import hljs from 'highlight.js'
+import mdhljs from 'markdown-it-highlightjs';
+import mk from 'markdown-it-katex';
+import mdemoji from 'markdown-it-emoji';
+
+export default { 
+  md : md({
     html: true
   })
   .use(mdhljs, {
@@ -41,4 +44,6 @@
     }
     md.renderer.rules.em_open = renderEm;
     md.renderer.rules.em_close = renderEm;
-  });
+  })
+
+}
