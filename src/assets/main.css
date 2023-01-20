@@ -95,11 +95,11 @@ html,body {
 	overflow: hidden;
 }
 
-#router > * {
+.editor > * {
 	margin: 0px 0px 16px 0px;
 }
 
-#router img, #router video {
+.editor img, .editor video {
 	max-width : 100%;
 	max-height: 372px;
 	margin: auto;
@@ -121,10 +121,8 @@ table {
 	overflow: auto;
 }
 
-#router>pre {
-	padding: .7em;
+.editor {
     overflow: auto;
-    border-radius: .7em;
 	background-color: var(--compl);
 }
 
