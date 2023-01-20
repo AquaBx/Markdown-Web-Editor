@@ -158,32 +158,32 @@ table {
 	font-size: large !important;
 }
 
-main.cours h1 {
+div.editor h1 {
 	color:var(--red);
 	font-size: 32px;
 }
 
-main.cours h2 {
+div.editor h2 {
 	color:var(--green);	
 	font-size: 29px;
 }
 
-main.cours h3 {
+div.editor h3 {
 	color:var(--blue);	
 	font-size: 26px;
 }
 
-main.cours h4 {
+div.editor h4 {
 	color:var(--purple);
 	font-size: 23px;
 }
 
-main.cours h5 {
+div.editor h5 {
 	color:var(--orange);
 	font-size: 20px;
 }
 
-main.cours h6 {
+div.editor h6 {
 	color:var(--lightblue);
 	font-size: 17px;
 }
@@ -192,7 +192,7 @@ header, h1, h2, h3, h4, h5, h6{
 	text-decoration: underline;
 }
 
-main.cours blockquote {
+div.editor blockquote {
 	border: 1px solid var(--yellow);
 	border-left: 7.5px solid var(--yellow);
 	padding: 0 15px;

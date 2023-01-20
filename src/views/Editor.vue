@@ -4,22 +4,25 @@
 
 
   let components = ref([
-    ref(""),ref("")
+    ref("")
   ])
 
   function pressed(e){
     let id = parseInt(e.target.parentElement.id)
     let target = components.value[id].value
-    
+    let pos = document.getSelection()?.focusOffset
     if (e.key === "Enter"){
-      let val = target.slice(e.target.selectionStart,target.length)
+      e.preventDefault();
+      
+      let val = target.slice(pos,target.length)
       components.value.splice(id+1,0,ref(val))
-      components.value[id].value = target.slice(0,e.target.selectionStart)
+      components.value[id].value = target.slice(0,pos)
     }
     else if (e.key === "Delete"){
-      if ( e.target.selectionStart === target.length){
+      if ( pos === target.length){
         components.value[id].value += components.value[id+1].value
         components.value.splice(id+1,1)
+        console.log(components)
       }
     }
     
@@ -29,7 +32,8 @@
     else if (e.key === "ArrowDown"){}
     
     else if (e.key === "Backspace"){
-      if ( e.target.selectionStart === 0){
+      
+      if ( pos === 0){
         components.value[id-1].value += target
         components.value.splice(id,1)
       }
@@ -41,7 +45,7 @@
 <template>
   <div id="editor" class="editor" @keydown="pressed">
     <template v-for="(value,index) in components">
-      <Line :value="value" :id="index"/>
+      <Line :text="value" :id="index"/>
     </template> 
   </div>
 </template>
