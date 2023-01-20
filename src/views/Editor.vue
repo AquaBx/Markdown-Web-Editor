@@ -12,7 +12,7 @@
     let target = components.value[id].value
     let pos = document.getSelection()?.focusOffset
     if (e.key === "Enter"){
-      if (e.shiftKey) return
+      if (e.shiftKey && (target.startsWith("$$") || target.startsWith("```"))) return
       e.preventDefault()
       if(target.startsWith("$$") && target.endsWith("$$") || target.startsWith("```") && target.endsWith("```")) {components.value.splice(id+1,0,ref(''));return}
       let val = target.slice(pos,target.length)
