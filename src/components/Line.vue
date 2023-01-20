@@ -83,7 +83,7 @@ function blur(e){
 <template>
 
     <div class="line" >
-        <div class="buttons" tabindex="-1">
+        <!-- <div class="buttons" tabindex="-1">
           <div class="icon">
             <Icon icon="carbon:overflow-menu-horizontal" />
           </div>
@@ -92,7 +92,7 @@ function blur(e){
             <button @click="">insert before</button>
             <button @click="">insert after</button>
           </div>
-        </div>
+        </div> -->
 
         <div @input="input" @blur="blur" @focus="focus" class="input empty" tabindex="-1" placeholder="..." data-content-editable-leaf="true" contenteditable="true"></div>
     </div>
