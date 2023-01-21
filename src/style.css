@@ -1,0 +1,258 @@
+@font-face {
+	font-family: "Urbanist";
+	font-style: normal;
+	src: url("./Urbanist.ttf");
+}
+
+:root {
+	--blue:#5A8DEE;
+	--green:#39DA8A;
+	--red:#F26061;	
+	--orange: #FDAC42;
+	--yellow:#FFCC00;
+	--lightblue:#74E0E5;
+	--purple:#A85ED6;
+
+	--vh: 100vh;
+}
+
+@media (prefers-color-scheme: light){
+	:root	{
+		--background:rgb(255, 255, 255);
+    --compl:rgb(245,245,255);
+		--text:#000000;
+		--text-reverse:#ffffff;
+		--shadow:rgba(0, 0, 0, 0.1);
+		--back-quote:rgb(255, 255, 224);
+	}
+}
+
+@media (prefers-color-scheme: dark){
+    :root	{
+        --background:rgb(25, 25, 35);
+        --compl:rgb(20, 20, 30);
+		--text:#ffffff;
+		--text-reverse:#000000;
+		--shadow:rgba(0, 0, 0, 0.3);
+		--back-quote:rgb(50, 40, 20);
+	}
+}
+
+@media print
+{
+	html,body{
+		height: auto !important;
+		overflow: auto !important;
+	}
+
+	.no-print	{
+		display: none !important;
+	}
+
+	div#editorjs{
+		height: auto !important;
+		padding : 0px !important;
+		width : 19cm !important;
+	}
+
+	div#editorjs > * {
+		overflow: hidden !important;
+	}
+}
+
+::-webkit-scrollbar{
+	width:12px;
+	height:12px;
+}
+
+::-webkit-scrollbar-thumb{
+	border-radius:16px;
+	border:4px solid transparent;
+	background-clip:content-box;
+	background-color: var(--text);
+}
+
+html,body{
+    all:unset;
+	font-family: Urbanist;
+    color:var(--text);
+}
+
+a:link,a:visited {
+	color: var(--blue);
+	cursor: pointer;
+	text-decoration: unset;
+}
+
+a:hover {
+	color: var(--red);
+}
+
+html,body {
+
+  background-color: var(--background);
+	height:var(--vh);
+	width: 100vw;
+	overflow: hidden;
+}
+
+div#editorjs > * {
+	margin: 0px 0px 16px 0px;
+}
+
+div#editorjs img, div#editorjs video {
+	max-width : 100%;
+	max-height: 372px;
+	margin: auto;
+    display: block;
+}
+
+.katex-display{
+	overflow: auto hidden;
+}
+
+td, th {
+	padding:6px 13px;
+	border:1px solid #9c9c9c;
+}
+
+table {
+	border-collapse: collapse;
+	display:block;
+	overflow: auto;
+}
+
+div#editorjs pre{
+    padding: .7em;
+    overflow: auto;
+    border-radius: .7em;
+    background-color: var(--compl);
+}
+
+.hljs .hljs-keyword {
+	color:var(--red) !important;
+}
+
+.hljs .hljs-title{
+	color:var(--yellow) !important;
+}
+
+.hljs .hljs-operator, .hljs .hljs-comment{
+	color: lightgray !important;
+}
+
+.hljs .hljs-number{
+	color:var(--purple) !important;
+}
+
+.hljs .hljs-built_in{
+	color:var(--blue) !important;
+} 
+
+.hljs .hljs-string{
+	color:var(--green) !important;
+}
+
+.hljs *, .hljs{
+	font-weight: 400 !important;
+	font-family: 'Ubuntu Mono', monospace !important;
+	font-size: 15px !important;
+}
+
+div#editorjs h1 {
+	color:var(--red);
+	font-size: 32px;
+}
+
+div#editorjs h2 {
+	color:var(--green);	
+	font-size: 29px;
+}
+
+div#editorjs h3 {
+	color:var(--blue);	
+	font-size: 26px;
+}
+
+div#editorjs h4 {
+	color:var(--purple);
+	font-size: 23px;
+}
+
+div#editorjs h5 {
+	color:var(--orange);
+	font-size: 20px;
+}
+
+div#editorjs h6 {
+	color:var(--lightblue);
+	font-size: 17px;
+}
+
+header, h1, h2, h3, h4, h5, h6{
+	text-decoration: underline;
+}
+
+div#editorjs blockquote {
+	border: 1px solid var(--yellow);
+	border-left: 7.5px solid var(--yellow);
+	padding: 0 15px;
+	border-radius: 0 0.75em 0.75em 0;
+	color:var(--yellow) !important;
+	background-color: var(--back-quote);
+}
+
+red {
+	color:var(--red);
+}
+
+blue {
+	color:var(--blue);
+}
+
+orange {
+	color:var(--orange);
+}
+
+yellow {
+	color:var(--yellow);
+}
+
+purple {
+	color:var(--purple);
+}
+
+lightblue {
+	color:var(--lightblue);
+}
+
+green {
+	color:var(--green);
+}
+
+*[aria-hidden]{
+	display: none;
+}
+
+.ce-toolbar__plus, .ce-toolbar__settings-btn{
+  color:var(--text);
+}
+
+.ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
+  color:var(--text-reverse);
+  background-color:var(--blue);
+}
+
+.ce-popover{
+  background-color: var(--compl);
+  color:var(--text);
+}
+
+.ce-popover svg {
+  color:var(--text-reverse);
+}
+
+.ce-popover__item:hover{
+  background-color: var(--compl);
+  color:var(--text-reverse);
+}
