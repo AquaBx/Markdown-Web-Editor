@@ -19,7 +19,7 @@
 @media (prefers-color-scheme: light){
 	:root	{
 		--background:rgb(255, 255, 255);
-        --compl:rgb(245,245,255);
+    --compl:rgb(245,245,255);
 		--text:#000000;
 		--text-reverse:#ffffff;
 		--shadow:rgba(0, 0, 0, 0.1);
@@ -49,13 +49,13 @@
 		display: none !important;
 	}
 
-	#router{
+	div#editorjs{
 		height: auto !important;
 		padding : 0px !important;
 		width : 19cm !important;
 	}
 
-	#router > * {
+	div#editorjs > * {
 		overflow: hidden !important;
 	}
 }
@@ -89,17 +89,18 @@ a:hover {
 }
 
 html,body {
-    background-color: var(--background);
+
+  background-color: var(--background);
 	height:var(--vh);
 	width: 100vw;
 	overflow: hidden;
 }
 
-.editor > * {
+div#editorjs > * {
 	margin: 0px 0px 16px 0px;
 }
 
-.editor img, .editor video {
+div#editorjs img, div#editorjs video {
 	max-width : 100%;
 	max-height: 372px;
 	margin: auto;
@@ -121,9 +122,11 @@ table {
 	overflow: auto;
 }
 
-.editor {
+div#editorjs pre{
+    padding: .7em;
     overflow: auto;
-	background-color: var(--compl);
+    border-radius: .7em;
+    background-color: var(--compl);
 }
 
 .hljs .hljs-keyword {
@@ -153,35 +156,35 @@ table {
 .hljs *, .hljs{
 	font-weight: 400 !important;
 	font-family: 'Ubuntu Mono', monospace !important;
-	font-size: large !important;
+	font-size: 15px !important;
 }
 
-div.editor h1 {
+div#editorjs h1 {
 	color:var(--red);
 	font-size: 32px;
 }
 
-div.editor h2 {
+div#editorjs h2 {
 	color:var(--green);	
 	font-size: 29px;
 }
 
-div.editor h3 {
+div#editorjs h3 {
 	color:var(--blue);	
 	font-size: 26px;
 }
 
-div.editor h4 {
+div#editorjs h4 {
 	color:var(--purple);
 	font-size: 23px;
 }
 
-div.editor h5 {
+div#editorjs h5 {
 	color:var(--orange);
 	font-size: 20px;
 }
 
-div.editor h6 {
+div#editorjs h6 {
 	color:var(--lightblue);
 	font-size: 17px;
 }
@@ -190,7 +193,7 @@ header, h1, h2, h3, h4, h5, h6{
 	text-decoration: underline;
 }
 
-div.editor blockquote {
+div#editorjs blockquote {
 	border: 1px solid var(--yellow);
 	border-left: 7.5px solid var(--yellow);
 	padding: 0 15px;
@@ -229,4 +232,27 @@ green {
 
 *[aria-hidden]{
 	display: none;
+}
+
+.ce-toolbar__plus, .ce-toolbar__settings-btn{
+  color:var(--text);
+}
+
+.ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
+  color:var(--text-reverse);
+  background-color:var(--blue);
+}
+
+.ce-popover{
+  background-color: var(--compl);
+  color:var(--text);
+}
+
+.ce-popover svg {
+  color:var(--text-reverse);
+}
+
+.ce-popover__item:hover{
+  background-color: var(--compl);
+  color:var(--text-reverse);
 }
