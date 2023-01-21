@@ -1,3 +1,5 @@
+@import url("./editorjs.css");
+
 @font-face {
 	font-family: "Urbanist";
 	font-style: normal;
@@ -232,27 +234,4 @@ green {
 
 *[aria-hidden]{
 	display: none;
-}
-
-.ce-toolbar__plus, .ce-toolbar__settings-btn{
-  color:var(--text);
-}
-
-.ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
-  color:var(--text-reverse);
-  background-color:var(--blue);
-}
-
-.ce-popover{
-  background-color: var(--compl);
-  color:var(--text);
-}
-
-.ce-popover svg {
-  color:var(--text-reverse);
-}
-
-.ce-popover__item:hover{
-  background-color: var(--compl);
-  color:var(--text-reverse);
 }
