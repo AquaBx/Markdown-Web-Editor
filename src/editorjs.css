@@ -1,0 +1,35 @@
+.ce-toolbar__plus, .ce-toolbar__settings-btn{
+    color:var(--text);
+  }
+  
+  .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
+    color:var(--text-reverse);
+    background-color:var(--blue);
+  }
+  
+  .ce-popover{
+    background-color: var(--compl);
+    color:var(--text);
+    border-color:var(--compl);
+  }
+  
+  .ce-popover svg {
+    color:var(--text-reverse);
+  }
+  
+  .ce-popover__item:hover{
+    background-color: var(--compl);
+    color:var(--text-reverse);
+  }
+
+  .ce-block--selected .ce-block__content{
+    background-color: var(--compl);
+  }
+
+  .cdx-search-field{
+    background-color: var(--background);;
+    border-color: var(--background);
+  }
+  .cdx-search-field input , .cdx-search-field svg{
+    color:var(--text);
+  }
