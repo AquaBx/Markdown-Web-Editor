@@ -28,7 +28,6 @@ const editor = new EditorJS({
     },
     table: Table,
     underline: Underline,
-    code: editorjsCodeflask,
   },
 });
 </script>
