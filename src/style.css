@@ -97,7 +97,7 @@ html,body {
 	width: 100vw;
 	overflow: hidden;
 }
-
+/* 
 div#editorjs > * {
 	margin: 0px 0px 16px 0px;
 }
@@ -234,4 +234,4 @@ green {
 
 *[aria-hidden]{
 	display: none;
-}
+} */

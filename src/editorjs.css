@@ -2,12 +2,16 @@
     color:var(--text);
   }
   
+  *::selection{
+    background-color:var(--compl);
+  }
+
   .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
     color:var(--text-reverse);
     background-color:var(--blue);
   }
   
-  .ce-popover{
+  .ce-popover, .ce-inline-toolbar{
     background-color: var(--compl);
     color:var(--text);
     border-color:var(--compl);
@@ -16,8 +20,12 @@
   .ce-popover svg {
     color:var(--text-reverse);
   }
-  
-  .ce-popover__item:hover{
+
+  .ce-inline-toolbar button:hover{
+    background-color: var(--compl);
+    color:var(--blue);
+  }
+  .ce-popover__item:hover {
     background-color: var(--compl);
     color:var(--text-reverse);
   }
