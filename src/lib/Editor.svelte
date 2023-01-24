@@ -18,8 +18,7 @@ const editor = new EditorJS({
     table: Table,
     underline: Underline,
     math:Katex,
-    },
-  
+  },
 });
 
 function save(e){
