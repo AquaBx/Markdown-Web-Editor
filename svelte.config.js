@@ -7,9 +7,9 @@ const config = {
   kit: {
     adapter: staticAdapter(),
 
-    paths :{
-      base:"/vtNotes"
-    }
+    // paths :{
+    //   base:"/vtNotes"
+    // }
   },
 };
 

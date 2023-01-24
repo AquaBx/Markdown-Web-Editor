@@ -2,7 +2,7 @@
   import "../style.css";
   import Editor from '../lib/Editor.svelte';
   import FileExplorer from '../lib/FileExplorer.svelte';
-
+  import _ from "../globals";
   let navigation_tools = [
       {
           node: FileExplorer,
