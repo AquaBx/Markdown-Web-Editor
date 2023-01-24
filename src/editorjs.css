@@ -8,14 +8,14 @@
 }
 
 .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.7);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
   
 .ce-popover, .ce-inline-toolbar{
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -32,7 +32,13 @@
   }
   
   .ce-popover__item:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  
+    color:var(--text-reverse);
   }
 
   .ce-block--selected .ce-block__content{
