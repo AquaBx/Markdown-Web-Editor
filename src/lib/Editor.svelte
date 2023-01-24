@@ -5,6 +5,7 @@ import List from '@editorjs/list';
 import Table from '@editorjs/table';
 import Underline from '@editorjs/underline';
 import Katex from '../plugins/katex'
+import SimpleImage from '@editorjs/simple-image'
 
 const editor = new EditorJS({
   holder: 'editorjs',  
@@ -24,6 +25,7 @@ const editor = new EditorJS({
     table: Table,
     underline: Underline,
     math:Katex,
+    image:SimpleImage,
   },
 });
 
