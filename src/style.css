@@ -20,8 +20,9 @@
 
 @media (prefers-color-scheme: light){
 	:root	{
-		--background:rgb(255, 255, 255);
-    --compl:rgb(245,245,255);
+		--background: rgb(254,255,242);
+		--background: radial-gradient(circle, rgba(250,255,255,1) 0%,rgba(255,250,255,1) 100%);
+    	--glass:rgba(255,255,255,0.2);
 		--text:#000000;
 		--text-reverse:#ffffff;
 		--shadow:rgba(0, 0, 0, 0.1);
@@ -31,8 +32,9 @@
 
 @media (prefers-color-scheme: dark){
     :root	{
-        --background:rgb(25, 25, 35);
-        --compl:rgb(20, 20, 30);
+        --background: rgb(30,0,30);
+		--background: radial-gradient(circle, rgba(20,0,20,1) 0%, rgba(0,20,20,1) 100%);
+        --glass:rgba(0, 0, 0,0.2);
 		--text:#ffffff;
 		--text-reverse:#000000;
 		--shadow:rgba(0, 0, 0, 0.3);
@@ -91,12 +93,17 @@ a:hover {
 }
 
 html,body {
-
-  background-color: var(--background);
+	background:var(--background);
+  /* background-color: var(--background); */
 	height:var(--vh);
 	width: 100vw;
 	overflow: hidden;
 }
+
+*[aria-hidden=true] {
+	 display: none;
+}
+
 /* 
 div#editorjs > * {
 	margin: 0px 0px 16px 0px;
@@ -109,9 +116,7 @@ div#editorjs img, div#editorjs video {
     display: block;
 }
 
-.katex-display{
-	overflow: auto hidden;
-}
+
 
 td, th {
 	padding:6px 13px;

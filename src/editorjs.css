@@ -1,42 +1,48 @@
 .ce-toolbar__plus, .ce-toolbar__settings-btn{
-    color:var(--text);
-  }
-  
-  *::selection{
-    background-color:var(--compl);
-  }
+  color:var(--text);
 
-  .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
-    color:var(--text-reverse);
-    background-color:var(--blue);
-  }
+}
   
-  .ce-popover, .ce-inline-toolbar{
-    background-color: var(--compl);
-    color:var(--text);
-    border-color:var(--compl);
-  }
+*::selection{
+  background: var(--blue);
+}
+
+.ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+  
+.ce-popover, .ce-inline-toolbar{
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color:var(--text);
+}
   
   .ce-popover svg {
-    color:var(--text-reverse);
+    color:var(--text);
   }
 
   .ce-inline-toolbar button:hover{
-    background-color: var(--compl);
-    color:var(--blue);
+
   }
+  
   .ce-popover__item:hover {
-    background-color: var(--compl);
-    color:var(--text-reverse);
+    background: rgba(255, 255, 255, 0.2);
   }
 
   .ce-block--selected .ce-block__content{
-    background-color: var(--compl);
+    background: var(--blue);
   }
 
   .cdx-search-field{
-    background-color: var(--background);;
-    border-color: var(--background);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+ 
   }
   .cdx-search-field input , .cdx-search-field svg{
     color:var(--text);
