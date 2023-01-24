@@ -9,7 +9,13 @@ import Katex from '../plugins/katex'
 const editor = new EditorJS({
   holder: 'editorjs',  
   tools: {
-    header: Header,
+    header: {
+      class: Header,
+      config: {
+        levels: [1,2,3],
+        defaultLevel: 1
+      }
+    },
     list: {
       class: List,
       inlineToolbar: true,
