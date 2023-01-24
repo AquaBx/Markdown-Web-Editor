@@ -5,11 +5,18 @@ import List from '@editorjs/list';
 import Table from '@editorjs/table';
 import Underline from '@editorjs/underline';
 import Katex from '../plugins/katex'
+import SimpleImage from '@editorjs/simple-image'
 
 const editor = new EditorJS({
   holder: 'editorjs',  
   tools: {
-    header: Header,
+    header: {
+      class: Header,
+      config: {
+        levels: [1,2,3],
+        defaultLevel: 1
+      }
+    },
     list: {
       class: List,
       inlineToolbar: true,
@@ -18,6 +25,7 @@ const editor = new EditorJS({
     table: Table,
     underline: Underline,
     math:Katex,
+    image:SimpleImage,
   },
 });
 
