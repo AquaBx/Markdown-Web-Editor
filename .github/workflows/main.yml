@@ -12,10 +12,11 @@ permissions:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    
     strategy:
       matrix: 
-        platform: [x86_64-apple-darwin,aarch64-apple-darwin,aarch64-pc-windows-msvc,x86_64-pc-windows-msvc,aarch64-unknown-linux-gnu,x86_64-unknown-linux-gnu]
+        platform: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       -
         name: Checkout
@@ -25,7 +26,7 @@ jobs:
         run: npm install
       -
         name: Build App
-        run: npm run tauri build -t ${{matrix.platform}}
+        run: npm run tauri build
       
       - name: Setup Pages
         uses: actions/configure-pages@v2
