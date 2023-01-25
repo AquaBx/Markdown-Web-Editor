@@ -38,11 +38,11 @@ jobs:
         with:
           workspaces: './src-tauri -> target'
 
-      - name: Sync node version and setup cache
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'lts/*'
-          cache: 'yarn' # Set this to npm, yarn or pnpm.
+      # - name: Sync node version and setup cache
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 'lts/*'
+      #     cache: 'yarn' # Set this to npm, yarn or pnpm.
           
       - name: Install Depedencies
         run: npm install
