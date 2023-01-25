@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Form from "$lib/Form.svelte";
+    import Settings from "$lib/Settings.svelte";
 
 </script>
 
-<Form/>
+<Settings/>
 
 
 <style scoped>
