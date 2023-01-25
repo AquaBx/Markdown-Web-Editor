@@ -7,56 +7,85 @@ import Underline from '@editorjs/underline';
 import Katex from '../plugins/katex'
 import SimpleImage from '@editorjs/simple-image'
 
-const editor = new EditorJS({
-  holder: 'editorjs',  
-  tools: {
-    header: {
-      class: Header,
-      config: {
-        levels: [1,2,3],
-        defaultLevel: 1
-      }
+import {readTextFile, writeTextFile} from '@tauri-apps/api/fs'
+import globals from '../globals';
+
+let file = document.location.hash.substring(1);
+let directory = globals.contents["directory"]
+let title = "";
+let editor:EditorJS
+
+(async function(){
+  let saved_data = {blocks:[]};
+  if (file !== ""){
+    title = file.split(".")[0]
+    let text = await readTextFile(directory+"/"+file)
+    saved_data = JSON.parse( text )
+  }
+
+  editor = new EditorJS({
+    holder: 'editorjs',
+    tools: {
+      header: {
+        class: Header,
+        config: {
+          levels: [1,2,3],
+          defaultLevel: 1
+        }
+      },
+      list: {
+        class: List,
+        inlineToolbar: true,
+        config: { defaultStyle: 'unordered' }
+      },
+      table: Table,
+      underline: Underline,
+      math:Katex,
+      image:SimpleImage,
     },
-    list: {
-      class: List,
-      inlineToolbar: true,
-      config: { defaultStyle: 'unordered' }
-    },
-    table: Table,
-    underline: Underline,
-    math:Katex,
-    image:SimpleImage,
-  },
-});
+    data:saved_data
+  });
+
+})()
 
 function save(e){
   editor.save().then((outputData) => {
-    console.log('Article data: ', outputData)
+    let path = directory + "/" + title + ".doc.json"
+    writeTextFile(path,JSON.stringify(outputData))
   }).catch((error) => {
     console.log('Saving failed: ', error)
   });
 }
 
 </script>
+<div class="container">
+  <div id="toolbar" class="glass_component">
+    <input id="title" bind:value="{title}" placeholder="Enter a filename">
+    <a on:click={save}>save</a>
+    <a></a>
+  </div>
 
-<!-- <div id="toolbar">
-<a on:click={save}>save</a>
-<a></a>
-</div> -->
-<div id="editorjs"></div>
+
+  <div id="editorjs" class="glass_component"></div>
+</div>
 
 <style scoped>
-    #editorjs{
-        width : 21cm;
-        height: 80%;
-        padding:1cm;
-        margin:auto;
-
-        background: var(--glass);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+    .container{
+      margin:auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      gap:1em;
     }
+    #toolbar,#editorjs{
+      width : 21cm;
+    }
+    #editorjs{
+      height: 70%;
+    }
+    input{
+      all: unset;
+    }
+
 </style>
