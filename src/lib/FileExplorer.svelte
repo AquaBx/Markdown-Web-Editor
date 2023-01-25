@@ -10,9 +10,20 @@
     })()
 
 </script>
-<div>
+
+<div class="fileexp glass_component">
     {#each files as file}
         <a href="/doc#{file.name}">{file.name}</a>
     {/each}
-
 </div>
+
+<style scoped>
+
+    .fileexp{
+        margin:auto;
+
+        height: 80%;
+        width:21cm;
+        overflow: auto;
+    }
+</style>

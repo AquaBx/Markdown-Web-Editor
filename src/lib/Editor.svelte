@@ -10,8 +10,6 @@ import SimpleImage from '@editorjs/simple-image'
 import {readTextFile, writeTextFile} from '@tauri-apps/api/fs'
 import globals from '../globals';
 
-
-
 let file = document.location.hash.substring(1);
 let directory = globals.contents["directory"]
 let title = "";
@@ -61,15 +59,16 @@ function save(e){
 
 </script>
 <div class="container">
-  <div id="toolbar">
+  <div id="toolbar" class="glass_component">
     <input id="title" bind:value="{title}" placeholder="Enter a filename">
-  <a on:click={save}>save</a>
-  <a></a>
+    <a on:click={save}>save</a>
+    <a></a>
   </div>
 
 
-  <div id="editorjs"></div>
+  <div id="editorjs" class="glass_component"></div>
 </div>
+
 <style scoped>
     .container{
       margin:auto;
@@ -81,14 +80,6 @@ function save(e){
     }
     #toolbar,#editorjs{
       width : 21cm;
-        
-        padding:1cm;
-        background: var(--glass);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
     }
     #editorjs{
       height: 70%;
