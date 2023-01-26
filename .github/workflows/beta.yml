@@ -65,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-          releaseName: "${github.repository} __VERSION__"
+          releaseName: ${github.repository} __VERSION__
           releaseBody: ""
           args: -t ${{ matrix.target }}
           target: ${{ matrix.target }}
