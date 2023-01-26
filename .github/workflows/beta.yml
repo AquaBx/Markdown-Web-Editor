@@ -6,6 +6,7 @@ on:
 
 jobs:
   build-tauri:
+  
     permissions:
       contents: write
     
@@ -65,4 +66,26 @@ jobs:
         with:
           name: ${{ matrix.targets.platform }}-${{ matrix.targets.arch }}
           path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/
+      
+      - name: Release Linux
+        uses: softprops/action-gh-release@v1
+        if: matrix.targets.platform == 'ubuntu'
+        with:
+          files: |
+            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/appimage/*.AppImage
+            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/deb/*.deb
+            
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: matrix.targets.platform == 'windows'
+        with:
+          files: |
+            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/msi/*.msi
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: matrix.targets.platform == 'macos'
+        with:
+          files: |
+            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/dmg/*.dmg
       
