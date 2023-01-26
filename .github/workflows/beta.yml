@@ -13,23 +13,23 @@ jobs:
       
       fail-fast: false
       matrix:
-        targets:
-          - platform: macos
-            arch: x86_64-apple-darwin
-          - platform: macos
-            arch: aarch64-apple-darwin
+        include:
+          - os: macos
+            target: x86_64-apple-darwin
+          - os: macos
+            target: aarch64-apple-darwin
 
-          - platform: ubuntu
-            arch: x86_64-unknown-linux-gnu
-          - platform: ubuntu
-            arch: aarch64-unknown-linux-gnu
+          - os: ubuntu
+            target: x86_64-unknown-linux-gnu
+          - os: ubuntu
+            target: aarch64-unknown-linux-gnu
 
-          - platform: windows
-            arch: x86_64-pc-windows-msvc
-          - platform: windows
-            arch: aarch64-pc-windows-msvc
+          - os: windows
+            target: x86_64-pc-windows-msvc
+          - os: windows
+            target: aarch64-pc-windows-msvc
             
-    runs-on: ${{ matrix.targets.platform }}-latest
+    runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v3
       
@@ -71,5 +71,5 @@ jobs:
           releaseName: "CyberChef v__VERSION__"
           releaseBody: "See the assets to download this version and install."
           bundleIdentifier: app.cyberchef
-          args: -t ${{ matrix.arch }}
-          target: ${{ matrix.arch }}
+          args: -t ${{ matrix.target }}
+          target: ${{ matrix.target }}
