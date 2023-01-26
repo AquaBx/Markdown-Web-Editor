@@ -10,7 +10,8 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     outputs:
-      tag: v${{ steps.version.outputs.value }}
+      appname: ${{ steps.appname.outputs.value }}
+      version: ${{ steps.version.outputs.value }}
     steps:
       - uses: actions/checkout@v3
        
@@ -26,17 +27,6 @@ jobs:
         id: appname
         run: echo "::set-output name=value::$(node -p "require('./package.json').name")"
 
-      - name: release
-        uses: actions/create-release@v1
-        id: create_release
-        with:
-          draft: false
-          prerelease: true
-          release_name: ${{ steps.appname.outputs.value }} ${{ steps.version.outputs.value }}
-          tag_name: v${{ steps.version.outputs.value }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
   build-tauri:
   
     permissions:
@@ -101,5 +91,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          releaseName: ${{needs.create-release.outputs.appname}} ${{needs.create-release.outputs.version}}
           args: --target ${{ matrix.targets.arch }}
-          tagName: ${{needs.create-release.outputs.tag}}
+          tagName: v${{needs.create-release.outputs.version}}
