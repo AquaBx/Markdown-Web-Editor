@@ -20,6 +20,8 @@ jobs:
           node-version: 'lts/*'
       - name: get version
         run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+      - name: get name
+        run: echo "APP_NAME=$(node -p "require('./package.json').name")" >> $GITHUB_ENV
       - name: create release
         id: create-release
         uses: actions/github-script@v6
@@ -29,9 +31,9 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: `app-v${process.env.PACKAGE_VERSION}`,
-              name: `Desktop App v${process.env.PACKAGE_VERSION}`,
-              body: 'Take a look at the assets to download and install this app.',
-              draft: false,
+              name: `${process.env.APP_NAME} ${process.env.PACKAGE_VERSION}`,
+              body: '',
+              draft: true,
               prerelease: true
             })
             return data.id
@@ -45,9 +47,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        targets:
+          - platform: macos
+            arch: x86_64-apple-darwin
+          - platform: macos
+            arch: aarch64-apple-darwin
 
-    runs-on: ${{ matrix.platform }}
+          - platform: ubuntu
+            arch: x86_64-unknown-linux-gnu
+          - platform: ubuntu
+            arch: aarch64-unknown-linux-gnu
+
+          - platform: windows
+            arch: x86_64-pc-windows-msvc
+          - platform: windows
+            arch: aarch64-pc-windows-msvc
+            
+    runs-on: ${{ matrix.platform }}-latest
     steps:
       - uses: actions/checkout@v3
       
@@ -59,6 +75,8 @@ jobs:
           
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target.arch }}
         
       - name: Rust cache
         uses: swatinem/rust-cache@v2
@@ -66,19 +84,24 @@ jobs:
           workspaces: './src-tauri -> target'
         
       - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-latest'
+        if: matrix.platform == 'ubuntu'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+          sudo apt update
+          sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
       
-      - name: install app dependencies and build it
-        run: npm install && npm run build
+      - name: installation modules nodejs
+        run: npm install
+        
+      - name: vite build
+        run : npm run build
       
-      - uses: tauri-apps/tauri-action@v0
+      - name: tauri build
+        uses: tauri-apps/tauri-action@v0
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           releaseId: ${{ needs.create-release.outputs.release_id }}
+          args: -t ${{ matrix.target.arch }}
 
   publish-release:
     permissions:
@@ -99,5 +122,5 @@ jobs:
               repo: context.repo.repo,
               release_id: process.env.release_id,
               draft: false,
-              prerelease: false
+              prerelease: true
             })
