@@ -78,7 +78,7 @@ jobs:
           targets: ${{ matrix.targets.arch }}
         
       - name: Cache
-        id: cache-primes
+        id: cache
         uses: actions/cache@v3
         with:
           path: ./src-tauri
@@ -93,37 +93,13 @@ jobs:
       - name: installation modules nodejs
         run: npm install
         
-      - name: vite build
-        run : npx tauri build -t ${{ matrix.targets.arch }}
+     # - name: vite build
+     #   run : npx tauri build --target ${{ matrix.targets.arch }}
       
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
+      - name: tauri build
+        uses: tauri-apps/tauri-action@v0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ matrix.targets.platform }}-${{ matrix.targets.arch }}
-          path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/
-      
-      - name: Release Linux
-        uses: softprops/action-gh-release@v1
-        if: matrix.targets.platform == 'ubuntu'
-        with:
-          files: |
-            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/appimage/*.AppImage
-            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/deb/*.deb
-          tag_name: ${{ needs.create-release.outputs.tag }}
-          
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: matrix.targets.platform == 'windows'
-        with:
-          files: |
-            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/msi/*.msi
-          tag_name: ${{ needs.create-release.outputs.tag }}
-      
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: matrix.targets.platform == 'macos'
-        with:
-          files: |
-            path: ./src-tauri/target/${{ matrix.targets.arch }}/release/bundle/dmg/*.dmg
-          tag_name: ${{ needs.create-release.outputs.tag }}
-      
+          releaseId: ${{ needs.create-release.outputs.release_id }}
+          args: --target ${{ matrix.targets.arch }}
