@@ -63,7 +63,7 @@ jobs:
           - platform: windows
             arch: aarch64-pc-windows-msvc
             
-    runs-on: ${{ matrix.platform }}-latest
+    runs-on: ${{ matrix.targets.platform }}-latest
     steps:
       - uses: actions/checkout@v3
       
@@ -76,7 +76,7 @@ jobs:
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.target.arch }}
+          targets: ${{ matrix.targets.arch }}
         
       - name: Rust cache
         uses: swatinem/rust-cache@v2
@@ -84,7 +84,7 @@ jobs:
           workspaces: './src-tauri -> target'
         
       - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu'
+        if: matrix.targets.platform == 'ubuntu'
         run: |
           sudo apt update
           sudo apt install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
@@ -101,7 +101,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           releaseId: ${{ needs.create-release.outputs.release_id }}
-          args: -t ${{ matrix.target.arch }}
+          args: -t ${{ matrix.targets.arch }}
 
   publish-release:
     permissions:
