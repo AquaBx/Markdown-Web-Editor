@@ -82,6 +82,13 @@ jobs:
         uses: swatinem/rust-cache@v2
         with:
           workspaces: './src-tauri -> target'
+          
+      - name: Cache
+        id: cache-primes
+        uses: actions/cache@v3
+        with:
+          path: ./src-tauri
+          key: ${{ matrix.targets.platform }}
         
       - name: install dependencies (ubuntu only)
         if: matrix.targets.platform == 'ubuntu'
