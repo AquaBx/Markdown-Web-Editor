@@ -60,7 +60,8 @@ jobs:
       - name: installation modules nodejs
         run: npm install
       
-      - uses: liudonghua123/tauri-action@v0
+      # - uses: liudonghua123/tauri-action@v0
+      - uses: tauri-apps/tauri-action@v0.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -68,4 +69,4 @@ jobs:
           releaseName: ${{github.repository}} __VERSION__
           releaseBody: ""
           args: -t ${{ matrix.target }}
-          target: ${{ matrix.target }}
+          # target: ${{ matrix.target }}
