@@ -96,7 +96,7 @@ jobs:
         run : npm run build
       
       - name: tauri build
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
