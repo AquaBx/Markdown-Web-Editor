@@ -20,21 +20,21 @@ jobs:
         with:
           node-version: 'lts/*'
       - name: version
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "::set-output name=value::$(node -p "require('./package.json').version")"
         id: version
 
       - name: appname
         id: appname
-        run: echo "::set-output name=version::$(node -p "require('./package.json').name")"
+        run: echo "::set-output name=value::$(node -p "require('./package.json').name")"
 
       - name: release
         uses: actions/create-release@v1
         id: create_release
         with:
           draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.appname }}
-          tag_name: ${{ github.ref }}
+          prerelease: true
+          release_name: ${{ steps.appname.outputs.value }} ${{ steps.version.outputs.value }}
+          tag_name: v${{ steps.version.outputs.value }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
