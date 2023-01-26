@@ -59,12 +59,17 @@ jobs:
       
       - name: installation modules nodejs
         run: npm install
+        
+      - name: ls
+        run: ls ./src-tauri/target
       
       - name: tauri build
         uses: liudonghua123/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          releaseBody: ""
+          bundleIdentifier: app.vtnotes
           releaseName: ${{ github.event.repository.name }} __VERSION__
           args: --target ${{ matrix.targets.arch }}
           tagName: build-__VERSION__
