@@ -63,14 +63,13 @@ jobs:
       - name: ls
         run: ls ./src-tauri/target
       
-      - name: tauri build
-        uses: liudonghua123/tauri-action@v0
+      - uses: liudonghua123/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseBody: ""
-          bundleIdentifier: app.vtnotes
-          releaseName: ${{ github.event.repository.name }} __VERSION__
-          args: --target ${{ matrix.targets.arch }}
-          tagName: build-__VERSION__
-          target: ${{ matrix.target }}
+          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          releaseName: "CyberChef v__VERSION__"
+          releaseBody: "See the assets to download this version and install."
+          bundleIdentifier: app.cyberchef
+          args: -t ${{ matrix.arch }}
+          target: ${{ matrix.arch }}
