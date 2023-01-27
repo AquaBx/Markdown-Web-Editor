@@ -4,10 +4,10 @@ import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Table from '@editorjs/table';
 import Underline from '@editorjs/underline';
-import Katex from '../plugins/katex'
 import SimpleImage from '@editorjs/simple-image'
-
 import {readTextFile, writeTextFile} from '@tauri-apps/api/fs'
+
+import Katex from '../plugins/katex'
 import globals from '../globals';
 
 let file = document.location.hash.substring(1);
