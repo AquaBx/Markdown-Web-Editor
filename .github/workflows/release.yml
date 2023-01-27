@@ -62,7 +62,7 @@ jobs:
         run: npm install
       
       # - uses:  AquaBx/tauri-action
-      - uses: tauri-apps/tauri-action@v0.3.1
+      - uses: AquaBx/tauri-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
