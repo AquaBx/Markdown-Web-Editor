@@ -1,4 +1,5 @@
 import {readTextFile, BaseDirectory, writeTextFile, createDir, exists} from '@tauri-apps/api/fs'
+import { appConfigDir } from '@tauri-apps/api/path'
 
 class datas {
     public static contents = {
@@ -7,7 +8,10 @@ class datas {
     }
 
     public static async save() {
-        await writeTextFile('settings.json', JSON.stringify(datas.contents), { dir: BaseDirectory.AppConfig });
+    
+        let dir = await appConfigDir()
+        await writeTextFile(`${dir}/settings.json`, JSON.stringify(datas.contents));
+
         if ( ! await exists(datas.contents["directory"])){
             createDir(datas.contents["directory"])
         }
