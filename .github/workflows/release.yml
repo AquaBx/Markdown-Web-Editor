@@ -37,7 +37,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-          cache: npm
           
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@nightly
@@ -48,7 +47,9 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ./src-tauri
+          path: |
+            ./src-tauri
+            ./node_modules
           key: ${{ matrix.target }}
         
       - name: install dependencies (ubuntu only)
