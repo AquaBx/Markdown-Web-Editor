@@ -7,7 +7,7 @@ class datas {
     }
 
     public static async save() {
-        await writeTextFile('settings.json', JSON.stringify(datas.contents), { dir: BaseDirectory.Resource });
+        await writeTextFile('settings.json', JSON.stringify(datas.contents), { dir: BaseDirectory.AppConfig });
         if ( ! await exists(datas.contents["directory"])){
             createDir(datas.contents["directory"])
         }
