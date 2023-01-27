@@ -8,8 +8,10 @@ class datas {
     }
 
     public static async save() {
+    
         let dir = await appConfigDir()
         await writeTextFile(`${dir}/settings.json`, JSON.stringify(datas.contents));
+
         if ( ! await exists(datas.contents["directory"])){
             createDir(datas.contents["directory"])
         }
