@@ -37,7 +37,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-          cache: npm
           
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@nightly
@@ -48,7 +47,9 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ./src-tauri
+          path: |
+            ./src-tauri
+            ./node_modules
           key: ${{ matrix.target }}
         
       - name: install dependencies (ubuntu only)
@@ -60,7 +61,8 @@ jobs:
       - name: installation modules nodejs
         run: npm install
       
-      - uses: liudonghua123/tauri-action@v0
+      # - uses:  AquaBx/tauri-action
+      - uses: AquaBx/tauri-action@v0.0.2-alpha
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -68,4 +70,4 @@ jobs:
           releaseName: ${{github.repository}} __VERSION__
           releaseBody: ""
           args: -t ${{ matrix.target }}
-          target: ${{ matrix.target }}
+          # target: ${{ matrix.target }}
