@@ -1,8 +1,7 @@
-name: build & release
+name: build test
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-tauri:
@@ -40,7 +39,7 @@ jobs:
         uses: dtolnay/rust-toolchain@nightly
         with:
           targets: ${{ matrix.target }}
-        
+      
       - name: Cache
         id: cache
         uses: actions/cache@v3
@@ -60,14 +59,9 @@ jobs:
       
       - name: installation modules nodejs
         run: npm install
-      
-      # - uses:  AquaBx/tauri-action
-      - uses: AquaBx/tauri-action@v0.0.2-alpha
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-          releaseName: ${{github.repository}} __VERSION__
-          releaseBody: ""
-          args: -t ${{ matrix.target }}
-          # target: ${{ matrix.target }}
+
+      - name: test build
+        run: npm run build
+
+      - name: test tauri build
+        run: npx tauri build -t ${{ matrix.target }}
