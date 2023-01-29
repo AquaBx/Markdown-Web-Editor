@@ -12,7 +12,6 @@ class datas {
         if ( ! await exists(dir) ) {
             createDir(dir)
         }
-        
         await writeTextFile(`${dir}/settings.json`, JSON.stringify(datas.contents));
 
         if ( ! await exists(datas.contents["directory"])){
