@@ -7,12 +7,15 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "vtNotes",
-    "version": "0.0.0"
+    "productName": "vtnotes",
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
       "all": false,
+      "path":{
+        "all":true
+      },
       "fs": {
         "all": true,
         "scope": ["**"]
