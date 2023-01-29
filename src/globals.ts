@@ -1,4 +1,4 @@
-import {writeTextFile, createDir, exists} from '@tauri-apps/api/fs'
+import {writeTextFile, createDir, exists, readTextFile} from '@tauri-apps/api/fs'
 import { appConfigDir } from '@tauri-apps/api/path'
 
 class datas {
@@ -25,8 +25,9 @@ class datas {
 (async function() {
     try{
         let dir = await appConfigDir()
-        console.log(dir)
-        datas.contents = JSON.parse(`${dir}/settings.json`)
+        let text = await readTextFile(`${dir}settings.json`)
+        console.log(text)
+        datas.contents = JSON.parse(text)
     }
     catch(e){
         datas.save()
