@@ -8,10 +8,15 @@
   },
   "package": {
     "productName": "vtnotes",
-    "version": "0.0.1"
+    "version": "0.0.2"
   },
   "tauri": {
     "allowlist": {
+      "http": {
+        "all": true,
+        "request": true,
+        "scope":["https://api-free.deepl.com/v2/translate"]
+      },
       "all": false,
       "path":{
         "all":true

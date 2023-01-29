@@ -1,24 +1,22 @@
 <script lang="ts">
-    // import * as deepl from 'deepl-node';
+    import * as deepl from 'deepl-node';
     import globals from '../../globals';
-
+    import {fetch} from "@tauri-apps/api/http"
+    import { init } from 'svelte/internal';
     const authKey = globals.contents["deeplkey"]
 
+
+    const translator = new deepl.Translator(authKey);
+
     let text = "";
-    let translated_text = "";
-    let target_lang = ""
-    let source_lang = ""
+    let translated_text:String|deepl.TextResult = "";
+    let target_lang: deepl.TargetLanguageCode = "en-US"
+    let source_lang: deepl.SourceLanguageCode = "fr"
 
     async function translate(){
-        let result = await fetch("https://api-free.deepl.com/v2/translate", {
-          body: `text=${text}&target_lang=${target_lang}&source_lang=${source_lang}`,
-          headers: {
-            Authorization: `DeepL-Auth-Key ${authKey}:fx`,
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          method: "POST"
-        });
-        translated_text = await result.text
+        const result = await translator.translateText(text, source_lang, target_lang);
+        translated_text = result
+        console.log(result)
     }
 
     function switch_translate(){
