@@ -26,7 +26,6 @@ class datas {
     try{
         let dir = await appConfigDir()
         let text = await readTextFile(`${dir}settings.json`)
-        console.log(text)
         datas.contents = JSON.parse(text)
     }
     catch(e){
