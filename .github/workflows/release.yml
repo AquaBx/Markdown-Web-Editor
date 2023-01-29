@@ -31,8 +31,6 @@ jobs:
             
     runs-on: ${{ matrix.os }}-latest
     steps:
-      - uses: actions/checkout@v3
-      
       - name: setup node
         uses: actions/setup-node@v3
         with:
@@ -51,6 +49,8 @@ jobs:
             ./src-tauri
             ./node_modules
           key: ${{ matrix.target }}
+
+      - uses: actions/checkout@v3
         
       - name: install dependencies (ubuntu only)
         if: matrix.os == 'ubuntu'
