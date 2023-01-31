@@ -1,6 +1,8 @@
 import katex from 'katex'
 import globals from '../globals'
-console.log(JSON.parse( globals.contents["katexmacros"] ))
+
+console.log( globals.contents["katexmacros"] )
+
 let katex_options = {
 	displayMode: true,
 	throwOnError: true,
