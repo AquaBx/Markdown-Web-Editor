@@ -4,7 +4,8 @@ import { appConfigDir } from '@tauri-apps/api/path'
 class datas {
     public static contents = {
         directory:"",
-        deeplkey:""
+        deeplkey:"",
+        katexmacros:"{}",
     }
 
     public static async save() {
@@ -20,13 +21,14 @@ class datas {
     } 
 }
 
-
-
 (async function() {
     try{
         let dir = await appConfigDir()
         let text = await readTextFile(`${dir}settings.json`)
-        datas.contents = JSON.parse(text)
+        let json = JSON.parse(text)
+        for (let key in json){
+            datas.contents[key] = json[key]
+        }
     }
     catch(e){
         datas.save()
