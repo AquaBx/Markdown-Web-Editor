@@ -5,7 +5,7 @@ class datas {
     public static contents = {
         directory:"",
         deeplkey:"",
-        katexmacros:"",
+        katexmacros:"{}",
     }
 
     public static async save() {
