@@ -39,8 +39,6 @@ jobs:
         uses: dtolnay/rust-toolchain@nightly
         with:
           targets: ${{ matrix.target }}
-      - name: install tauri dev
-        run: cargo install tauri-cli --git https://github.com/tauri-apps/tauri
       - name: Cache
         id: cache
         uses: actions/cache@v3
