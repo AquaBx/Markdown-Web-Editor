@@ -46,6 +46,7 @@ jobs:
           path: |
             ./src-tauri
             ./node_modules
+            ~/.cargo
           key: ${{ matrix.target }}
 
       - uses: actions/checkout@v3
