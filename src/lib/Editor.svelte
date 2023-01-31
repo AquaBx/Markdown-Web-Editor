@@ -75,14 +75,13 @@ function save(e){
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100%;
+      height: calc( 100% - 2cm );
       gap:1em;
-    }
-    #toolbar,#editorjs{
-      width : 21cm;
+      width : clamp(0px,calc(100vw - 2cm - 2px),21cm);
     }
     #editorjs{
-      height: 70%;
+      flex:1;
+      overflow: scroll;
     }
     input{
       all: unset;

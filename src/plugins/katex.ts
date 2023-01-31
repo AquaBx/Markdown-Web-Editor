@@ -1,23 +1,10 @@
 import katex from 'katex'
-
+import globals from '../globals'
+console.log(JSON.parse( globals.contents["katexmacros"] ))
 let katex_options = {
 	displayMode: true,
 	throwOnError: true,
-	macros: {
-		'\\(': '\\lparen',
-		'\\)': '\\rparen',
-		'\\{': '\\lbrace',
-		'\\}': '\\rbrace',
-		'\\[': '\\lbrack',
-		'\\]': '\\rbrack',
-		'\\n': '\\\\ \\ \\\\',
-		'\\vec': '\\overrightarrow{#1}',
-		'\\embrace': '\\left#2\\begin{split} #1 \\end{split}\\right#3',
-		'\\aembrace': '\\embrace{#1}{\\{}{\\}}',
-		'\\pembrace': '\\embrace{#1}{\\(}{\\)}',
-		'\\cembrace': '\\embrace{#1}{\\[}{\\]}',
-		'\\abs': '\\displaystyle\\left\\lvert{#1}\\right\\rvert',
-	}
+	macros: JSON.parse( globals.contents["katexmacros"] )
 }
 export default class {
     static get toolbox() {
