@@ -1,15 +1,24 @@
-<script>
+<script lang="ts">
   import "../style.css";
-  import _ from "../globals";
+  import globals from "../globals";
   import Icon from "../lib/Icon.svelte"
+
+  let waitload = false;
+
+  (async function() {
+    waitload = await globals.load()
+    console.log(waitload)
+  })()
+
   let navigation_tools = [
-      '',
-      'doc',
-      // 'draw',
-      // 'calc',
-      // 'deepl',
-      'settings'
-  ]
+        '',
+        'doc',
+        // 'draw',
+        // 'calc',
+        // 'deepl',
+        'settings'
+    ]
+  
 </script>
   
 <div class="menu glass_component">
@@ -20,9 +29,11 @@
   {/each}
 </div>
 
+{#if waitload}
 <main>
   <slot />
 </main>
+{/if}
 
 <style scoped>
 
