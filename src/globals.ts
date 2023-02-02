@@ -19,20 +19,20 @@ class datas {
             createDir(datas.contents["directory"])
         }
     } 
-}
-
-(async function() {
-    try{
-        let dir = await appConfigDir()
-        let text = await readTextFile(`${dir}settings.json`)
-        let json = JSON.parse(text)
-        for (let key in json){
-            datas.contents[key] = json[key]
+    public static async load():Promise<boolean>{
+        try{
+            let dir = await appConfigDir()
+            let text = await readTextFile(`${dir}settings.json`)
+            let json:{[key: string]: string} = JSON.parse(text)
+            for (let key in json){
+                if (key in this.contents) this.contents[key] = json[key]
+            }
         }
+        catch(e){
+            datas.save()
+        }
+        return true
     }
-    catch(e){
-        datas.save()
-    }
-})()
+}
 
 export default datas 
