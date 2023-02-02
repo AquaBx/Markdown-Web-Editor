@@ -9,6 +9,7 @@ import {readTextFile, writeTextFile} from '@tauri-apps/api/fs'
 
 import Katex from '../plugins/katex'
 import globals from '../globals';
+import export_file_pdf from '../plugins/export'
 
 let file = document.location.hash.substring(1);
 let directory = globals.contents["directory"]
@@ -57,12 +58,16 @@ function save(e){
   });
 }
 
+function export_file(){
+  export_file_pdf(title,document.querySelector("#editorjs"))
+}
+
 </script>
 <div class="container">
   <div id="toolbar" class="glass_component">
     <input id="title" bind:value="{title}" placeholder="Enter a filename">
-    <a on:click={save}>save</a>
-    <a></a>
+    <a href="#." on:click={save}>save</a>
+    <a href="#." on:click={export_file}>export</a>
   </div>
 
 
