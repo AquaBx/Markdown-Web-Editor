@@ -2,7 +2,7 @@ import {writeTextFile, createDir, exists, readTextFile} from '@tauri-apps/api/fs
 import { appConfigDir } from '@tauri-apps/api/path'
 
 class datas {
-    public static contents = {
+    public static contents:{[key:string]:string} = {
         directory:"",
         deeplkey:"",
         katexmacros:"{}",

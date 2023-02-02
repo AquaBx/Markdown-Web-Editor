@@ -8,13 +8,13 @@
 
     const translator = new deepl.Translator(authKey);
 
-    let text = "";
+    let text:String|deepl.TextResult = "";
     let translated_text:String|deepl.TextResult = "";
     let target_lang: deepl.TargetLanguageCode = "en-US"
     let source_lang: deepl.SourceLanguageCode = "fr"
 
     async function translate(){
-        const result = await translator.translateText(text, source_lang, target_lang);
+        const result = await translator.translateText(text.toString(), source_lang, target_lang);
         translated_text = result
         console.log(result)
     }
@@ -28,8 +28,8 @@
 
 <div class="container">
     <textarea id="text" bind:value="{text}" placeholder="Enter text"></textarea>
-    <a on:click="{translate}">Translate</a>
-    <a on:click="{switch_translate}">switch</a>
+    <a href="#." on:click="{translate}">Translate</a>
+    <a href="#." on:click="{switch_translate}">switch</a>
     <div id="translated">{translated_text}</div>
 </div>
 

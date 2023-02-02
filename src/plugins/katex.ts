@@ -8,6 +8,7 @@ let katex_options = {
 	throwOnError: true,
 	macros: JSON.parse( globals.contents["katexmacros"] )
 }
+
 export default class {
     static get toolbox() {
         return {
@@ -28,14 +29,24 @@ export default class {
       div.setAttribute("class","ce-paragraph cdx-block")
       div.setAttribute("style","overflow: auto hidden;")
       div.value = ""
-      div.onfocus= (e:Event) => {e.target.innerHTML = e.target.value;e.target.focus()}
-      div.onblur = (e:Event) => {e.target.innerHTML = katex.renderToString(e.target.value,katex_options) }
-      div.oninput= (e:Event) => {e.target.value = e.target.innerText}
+      div.onfocus= (e:Event) => {
+        let el = e.target as HTMLElement
+        el.innerHTML = el.value
+        el.focus()
+      }
+      div.onblur = (e:Event) => {
+        let el = e.target as HTMLElement
+        el.innerHTML = katex.renderToString(el.value,katex_options) 
+      }
+      div.oninput= (e:Event) => {
+        let el = e.target as HTMLElement
+        el.value = el.innerText
+      }
   
       return div;
     }
   
-    save(blockContent){
+    save(blockContent:HTMLElement){
       return {
         latex: blockContent.value
       }
