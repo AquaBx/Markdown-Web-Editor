@@ -1,7 +1,7 @@
 {
   "name": "vtnotes",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -21,6 +21,7 @@
     "@tauri-apps/api": "^1.2.0",
     "@types/katex": "^0.16.0",
     "deepl-node": "^1.7.5",
+    "jspdf": "^2.5.1",
     "katex": "^0.16.4"
   },
   "devDependencies": {

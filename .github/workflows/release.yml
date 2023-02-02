@@ -68,6 +68,6 @@ jobs:
         with:
           tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
           releaseName: ${{github.repository}} __VERSION__
-          releaseBody: ""
+          prerelease: true
           args: -t ${{ matrix.target }}
           # target: ${{ matrix.target }}

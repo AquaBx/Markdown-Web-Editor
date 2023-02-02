@@ -5,8 +5,8 @@
 <div class="fileexp glass_component">
     {#each Object.keys(globals.contents) as key}
         <div>
-            <label>{key}</label>
-            <input on:blur={globals.save()} bind:value={globals.contents[key]}>
+            <label for={key}>{key}</label>
+            <input id={key} on:blur={async() => {await globals.save()}} bind:value={globals.contents[key]}>
         </div>
     {/each}
 </div>
