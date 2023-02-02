@@ -57,12 +57,16 @@ function save(e){
   });
 }
 
+function export_file(e){
+  return
+}
+
 </script>
 <div class="container">
   <div id="toolbar" class="glass_component">
     <input id="title" bind:value="{title}" placeholder="Enter a filename">
-    <a on:click={save}>save</a>
-    <a></a>
+    <a href="#." on:click={save}>save</a>
+    <a href="#." on:click={export_file}> </a>
   </div>
 
 

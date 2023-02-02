@@ -8,19 +8,13 @@
 }
 
 .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover{
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  border-radius: 16px;
+  color:var(--text-reverse);
 }
   
 .ce-popover, .ce-inline-toolbar{
-  background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  color:var(--text);
+  color:var(--text-reverse);
 }
   
   .ce-popover svg {
@@ -32,12 +26,7 @@
   }
   
   .ce-popover__item:hover {
-    background: rgba(255, 255, 255, 0.7);
     border-radius: 16px;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  
     color:var(--text-reverse);
   }
 
@@ -46,9 +35,8 @@
   }
 
   .cdx-search-field{
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255);
     border-radius: 12px;
- 
   }
   .cdx-search-field input , .cdx-search-field svg{
     color:var(--text);
