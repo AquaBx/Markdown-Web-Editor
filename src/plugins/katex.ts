@@ -31,7 +31,7 @@ export default class {
       div.value = ""
       div.onfocus= (e:Event) => {
         let el = e.target as HTMLElement
-        el.innerHTML = el.value
+        el.innerText = el.value
         el.focus()
       }
       div.onblur = (e:Event) => {

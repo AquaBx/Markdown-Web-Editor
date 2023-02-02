@@ -21,8 +21,8 @@
     "@tauri-apps/api": "^1.2.0",
     "@types/katex": "^0.16.0",
     "deepl-node": "^1.7.5",
-    "katex": "^0.16.4",
-    "pdfjs-dist": "^3.3.122"
+    "jspdf": "^2.5.1",
+    "katex": "^0.16.4"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.5",
