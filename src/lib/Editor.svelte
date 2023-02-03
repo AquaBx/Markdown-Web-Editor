@@ -8,8 +8,10 @@ import SimpleImage from '@editorjs/simple-image'
 import {readTextFile, writeTextFile} from '@tauri-apps/api/fs'
 
 import Katex from '../plugins/katex'
+import Mermaid from '../plugins/mermaid'
 import globals from '../globals';
 import export_file_pdf from '../plugins/export'
+import Preview from './Preview.svelte';
 
 let file = document.location.hash.substring(1);
 let directory = globals.contents["directory"]
@@ -41,8 +43,19 @@ let editor:EditorJS
       },
       table: Table,
       underline: Underline,
-      math:Katex,
       image:SimpleImage,
+      math:{
+        class: Katex,
+        config:{
+          show_popup:show_popup,
+        }
+      },
+      mermaid:{
+        class: Mermaid,
+        config:{
+          show_popup:show_popup,
+        }
+      },
     },
     data:saved_data
   });
@@ -62,6 +75,15 @@ function export_file(){
   export_file_pdf(title,document.querySelector("#editorjs"))
 }
 
+let popup_ref:HTMLElement
+let popup_function:any
+
+function show_popup(value:HTMLElement,sanitizer:any){
+  popup_ref = value
+  popup_function = sanitizer
+  console.log(popup_ref)
+}
+
 </script>
 <div class="container">
   <div id="toolbar" class="glass_component">
@@ -70,6 +92,7 @@ function export_file(){
     <a href="#." on:click={export_file}>export</a>
   </div>
 
+  <Preview bind:ref={popup_ref} bind:render_func={popup_function} ></Preview>
 
   <div id="editorjs" class="glass_component"></div>
 </div>

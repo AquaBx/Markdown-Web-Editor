@@ -22,7 +22,8 @@
     "@types/katex": "^0.16.0",
     "deepl-node": "^1.7.5",
     "jspdf": "^2.5.1",
-    "katex": "^0.16.4"
+    "katex": "^0.16.4",
+    "mermaid": "^9.3.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.5",
