@@ -30,11 +30,11 @@ jobs:
 
           - os: windows
             target: x86_64-pc-windows-msvc
-            args: -b nsis
+            args: ""
 
           - os: windows
             target: aarch64-pc-windows-msvc
-            args: -b nsis
+            args: -b none
             
     runs-on: ${{ matrix.os }}-latest
     steps:
