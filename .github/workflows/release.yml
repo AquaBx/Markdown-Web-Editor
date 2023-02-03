@@ -16,18 +16,25 @@ jobs:
         include:
           - os: macos
             target: x86_64-apple-darwin
+            args: ""
           - os: macos
             target: aarch64-apple-darwin
+            args: ""
 
           - os: ubuntu
             target: x86_64-unknown-linux-gnu
+            args: ""
           - os: ubuntu
             target: aarch64-unknown-linux-gnu
+            args: ""
 
           - os: windows
             target: x86_64-pc-windows-msvc
+            args: -b nsis
+
           - os: windows
             target: aarch64-pc-windows-msvc
+            args: -b nsis
             
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -69,5 +76,5 @@ jobs:
           tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
           releaseName: ${{github.repository}} __VERSION__
           prerelease: true
-          args: -t ${{ matrix.target }}
+          args: -t ${{ matrix.target }}  ${{ matrix.args }}
           # target: ${{ matrix.target }}
