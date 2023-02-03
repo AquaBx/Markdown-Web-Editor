@@ -7,16 +7,16 @@ on:
 jobs:
   version-bump:
     runs-on: ubuntu-latest
-      steps:
-        - name: 'Checkout'
-          uses: actions/checkout@v3
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
 
-        - name: Bump version
-          uses: phips28/gh-action-bump-version@master
-          with:
-              version-type:  'minor'
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Bump version
+        uses: phips28/gh-action-bump-version@master
+        with:
+            version-type:  'minor'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-tauri:
     permissions:
