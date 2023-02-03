@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "vtnotes",
-    "version": "0.0.4"
+    "version": "../package.json"
   },
   "tauri": {
     "allowlist": {
