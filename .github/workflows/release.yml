@@ -6,8 +6,7 @@ on:
 
 jobs:
   version-bump:
-    permissions:
-      contents: write
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
