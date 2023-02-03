@@ -1,6 +1,6 @@
 import { jsPDF } from "jspdf"
 
-export default function (name,elementHTML:HTMLElement) {
+export default function (name:string,elementHTML:HTMLElement) {
 
     let doc:any = new jsPDF();
 
