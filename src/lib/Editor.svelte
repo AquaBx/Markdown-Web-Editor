@@ -8,8 +8,10 @@ import SimpleImage from '@editorjs/simple-image'
 import {readTextFile, writeTextFile} from '@tauri-apps/api/fs'
 
 import Katex from '../plugins/katex'
+import Mermaid from '../plugins/mermaid'
 import globals from '../globals';
 import export_file_pdf from '../plugins/export'
+import Preview from './Preview.svelte';
 
 let file = document.location.hash.substring(1);
 let directory = globals.contents["directory"]
@@ -41,8 +43,19 @@ let editor:EditorJS
       },
       table: Table,
       underline: Underline,
-      math:Katex,
       image:SimpleImage,
+      math:{
+        class: Katex,
+        config:{
+          show_popup:show_popup,
+        }
+      },
+      mermaid:{
+        class: Mermaid,
+        config:{
+          show_popup:show_popup,
+        }
+      },
     },
     data:saved_data
   });
@@ -58,35 +71,51 @@ function save(e){
   });
 }
 
-function export_file(){
-  export_file_pdf(title,document.querySelector("#editorjs"))
+function export_file(e){
+  window.print()
+  // editor.save().then((outputData) => {
+  //   export_file_pdf(title,outputData)
+  // }).catch((error) => {
+  //   console.log('Saving failed: ', error)
+  // });
+}
+
+let popup_ref:HTMLElement
+let popup_function:any
+
+function show_popup(value:HTMLElement,sanitizer:any){
+  popup_ref = value
+  popup_function = sanitizer
 }
 
 </script>
-<div class="container">
-  <div id="toolbar" class="glass_component">
-    <input id="title" bind:value="{title}" placeholder="Enter a filename">
-    <a href="#." on:click={save}>save</a>
-    <a href="#." on:click={export_file}>export</a>
+  <div class="container glass_component">
+    <div id="toolbar" class="no-print">
+      <input id="title" bind:value="{title}" placeholder="Enter a filename">
+      <a href="#." on:click={save}>save</a>
+      <a href="#." on:click={export_file}>export</a>
+    </div>
+    
+    
+    <div id="editorjs" ></div>
   </div>
-
-
-  <div id="editorjs" class="glass_component"></div>
-</div>
+  <Preview bind:ref={popup_ref} bind:render_func={popup_function}></Preview>
 
 <style scoped>
+
     .container{
-      margin:auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: calc( 100% - 2cm );
-      gap:1em;
-      width : clamp(0px,calc(100vw - 2cm - 2px),21cm);
+    }
+    #toolbar{
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding:1cm;
+
     }
     #editorjs{
+      padding:0.5cm 1cm;
       flex:1;
-      overflow: scroll;
+      overflow: auto;
     }
     input{
       all: unset;

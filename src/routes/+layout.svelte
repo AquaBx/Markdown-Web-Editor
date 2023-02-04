@@ -7,7 +7,6 @@
 
   (async function() {
     waitload = await globals.load()
-    console.log(waitload)
   })()
 
   let navigation_tools = [
@@ -21,7 +20,7 @@
   
 </script>
   
-<div class="menu glass_component">
+<div class="menu glass_component no-print">
   {#each navigation_tools as component}
   <a href={"./" + component}>
     <Icon type={component}></Icon>
@@ -31,16 +30,17 @@
 
 {#if waitload}
 <main>
-  <slot />
+  <slot></slot>
 </main>
 {/if}
 
 <style scoped>
-
+  
   main{
     display: flex;
     height: var(--vh);
   }
+  
 
   .menu{
       bottom: 0;
@@ -73,5 +73,12 @@
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  @media print{
+    main{
+      height: unset;
+      width: 100%;
+    }
   }
   </style>
