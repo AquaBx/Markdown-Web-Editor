@@ -72,4 +72,6 @@ jobs:
         run: npm run build
 
       - name: test tauri build
-        run: cargo tauri build -t ${{ matrix.target }} ${{ matrix.args }}
+        run: |
+            cd src-tauri
+            cargo tauri build -t ${{ matrix.target }} ${{ matrix.args }}
