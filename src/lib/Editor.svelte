@@ -111,7 +111,7 @@ function show_popup(value:HTMLElement,sanitizer:any){
     #editorjs{
       padding:0.5cm 1cm;
       flex:1;
-      overflow: scroll;
+      overflow: auto;
     }
     input{
       all: unset;
