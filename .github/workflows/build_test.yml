@@ -74,4 +74,4 @@ jobs:
       - name: test tauri build
         run: |
             cd src-tauri
-            cargo tauri build -t ${{ matrix.target }} ${{ matrix.args }}
+            cargo build -t ${{ matrix.target }} ${{ matrix.args }}
