@@ -85,29 +85,31 @@ function show_popup(value:HTMLElement,sanitizer:any){
 }
 
 </script>
-<div class="container">
-  <div id="toolbar" class="glass_component">
+<div class="container glass_component">
+  <div id="toolbar" class="no-print">
     <input id="title" bind:value="{title}" placeholder="Enter a filename">
     <a href="#." on:click={save}>save</a>
     <a href="#." on:click={export_file}>export</a>
   </div>
 
-  <Preview bind:ref={popup_ref} bind:render_func={popup_function} ></Preview>
+  <Preview bind:ref={popup_ref} bind:render_func={popup_function}></Preview>
 
-  <div id="editorjs" class="glass_component"></div>
+  <div id="editorjs" ></div>
 </div>
 
 <style scoped>
+
     .container{
-      margin:auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: calc( 100% - 2cm );
-      gap:1em;
-      width : clamp(0px,calc(100vw - 2cm - 2px),21cm);
+    }
+    #toolbar{
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding:1cm;
+
     }
     #editorjs{
+      padding:0.5cm 1cm;
       flex:1;
       overflow: scroll;
     }

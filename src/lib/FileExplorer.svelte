@@ -13,30 +13,26 @@
 
 </script>
 
-<div class="fileexp glass_component">
-    {#each files as file}
-    <a href="/doc#{file.name}">
-        <Icon type={file.name?.split(".").at(-2)} ></Icon>
-        {file.name}
-    </a>
-    {/each}
+<div class="container glass_component">
+    <div class="flexbox">
+        {#each files as file}
+        <a href="/doc#{file.name}">
+            <Icon type={file.name?.split(".").at(-2)} ></Icon>
+            {file.name}
+        </a>
+        {/each}
+    </div>
 </div>
 
 <style scoped>
-
-    .fileexp{
-        margin:auto;
+    .container > .flexbox{
         display: flex;
-        height: 80%;
-        width:21cm;
-        overflow: auto;
-        flex-direction: column;
+	    flex-direction: column;
+        padding:1cm;
         gap:1em;
     }
-
-    .fileexp a {
+    .container > .flexbox > a {
         display: flex;
         align-items: center;
-        gap:1em;
     }
 </style>
