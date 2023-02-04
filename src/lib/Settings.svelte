@@ -1,23 +1,21 @@
 <script lang="ts">
     import globals from '../globals';
 </script>
-
-<div class="fileexp glass_component">
-    {#each Object.keys(globals.contents) as key}
-        <div>
-            <label for={key}>{key}</label>
-            <input id={key} on:blur={async() => {await globals.save()}} bind:value={globals.contents[key]}>
-        </div>
-    {/each}
+<div class="container glass_component">
+    
+    <table >
+        {#each Object.keys(globals.contents) as key}
+            <tr>
+            <td> {key} </td>
+            <td>
+                <textarea id={key} on:blur={async() => {await globals.save()}} bind:value={globals.contents[key]}/> 
+                </td>
+            </tr>
+        {/each}
+    </table>
 </div>
-
 <style scoped>
-
-    .fileexp{
-        margin:auto;
-
-        height: 80%;
-        width:21cm;
-        overflow: auto;
+    .container > table{
+        padding:1cm;
     }
 </style>

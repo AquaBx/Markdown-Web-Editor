@@ -8,7 +8,7 @@ let katex_options = {
 }
 
 function render(text:string){
-  return katex.renderToString(text,katex_options)
+  return katex.renderToString(`\\begin{align*} ${text} \\end{align*}`,katex_options)
 }
 
 export default class {

@@ -23,7 +23,7 @@
 <div class="modal">
     <div class="flex">
         <div>{@html render(ref.value)}</div>
-        <textarea bind:value={ref.value}></textarea>
+        <textarea spellcheck="false" bind:value={ref.value}></textarea>
     </div>
     <button on:click={save}>Save</button>
 </div>
