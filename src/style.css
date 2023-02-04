@@ -23,6 +23,7 @@
 		--background: rgb(254,255,242);
 		--background: radial-gradient(circle, rgba(200,220,220,1) 0%,rgba(220,220,220,1) 100%);
     	--glass:rgba(255,255,255,0.3);
+    	--glass2:rgba(255,255,255,0.7);
 		--text:#000000;
 		--text-reverse:#ffffff;
 		--shadow:rgba(0, 0, 0, 0.1);
@@ -35,6 +36,7 @@
         --background: rgb(30,0,30);
 		--background: radial-gradient(circle, rgba(0,20,20,1) 0%, rgba(20,20,20,1) 100%);
         --glass:rgba(0, 0, 0,0.3);
+        --glass2:rgba(0, 0, 0,0.7);
 		--text:#ffffff;
 		--text-reverse:#000000;
 		--shadow:rgba(0, 0, 0, 0.3);
@@ -42,27 +44,7 @@
 	}
 }
 
-@media print
-{
-	html,body{
-		height: auto !important;
-		overflow: auto !important;
-	}
 
-	.no-print	{
-		display: none !important;
-	}
-
-	div#editorjs{
-		height: auto !important;
-		padding : 0px !important;
-		width : 19cm !important;
-	}
-
-	div#editorjs > * {
-		overflow: hidden !important;
-	}
-}
 
 ::-webkit-scrollbar{
 	width:12px;
@@ -105,7 +87,6 @@ html,body {
 }
 
 .glass_component{
-	padding:1cm;
     background: var(--glass);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -114,12 +95,39 @@ html,body {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+::-webkit-scrollbar-corner{display: none;}
 
+.container{
+	margin:auto;
+	overflow: auto;
+	height: 80%;
+	width : clamp(0px,calc(100vw - 2cm - 2px),21cm);
+  }
 
+@media print
+{
+	.glass_component{
+		all:unset;
+	}
+	html,body{
+		height: auto !important;
+		overflow: auto !important;
+	}
 
+	.no-print	{
+		display: none !important;
+	}
 
+	div#editorjs{
+		height: auto !important;
+		padding : 0px !important;
+		width : 19cm !important;
+	}
 
-
+	div#editorjs > * {
+		overflow: hidden !important;
+	}
+}
 
 /* 
 div#editorjs > * {

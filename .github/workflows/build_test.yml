@@ -29,11 +29,11 @@ jobs:
 
           - os: windows
             target: x86_64-pc-windows-msvc
-            args: -b nsis
+            args: ""
 
           - os: windows
             target: aarch64-pc-windows-msvc
-            args: -b nsis
+            args: ""
 
             
     runs-on: ${{ matrix.os }}-latest
@@ -47,15 +47,6 @@ jobs:
         uses: dtolnay/rust-toolchain@nightly
         with:
           targets: ${{ matrix.target }}
-      - name: Cache
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ./src-tauri
-            ./node_modules
-            ~/.cargo
-          key: ${{ matrix.target }}
 
       - uses: actions/checkout@v3
         
@@ -72,4 +63,6 @@ jobs:
         run: npm run build
 
       - name: test tauri build
-        run: cargo tauri build -t ${{ matrix.target }} ${{ matrix.args }}
+        run: |
+            cd src-tauri
+            cargo build --target ${{ matrix.target }} ${{ matrix.args }}
