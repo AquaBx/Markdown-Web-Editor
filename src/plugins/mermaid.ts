@@ -1,5 +1,4 @@
 import mermaidAPI from 'mermaid'
-import globals from '../globals'
 
 function render(text:string){
   return mermaidAPI.render('div',text)
@@ -25,7 +24,7 @@ export default class {
 
       div.innerText = "Empty"
       div.value = "Empty"
-      this.config.show_popup(div,render )
+      div.onclick = (e) => { this.config.show_popup(div,render) }
 
       return div;
     }

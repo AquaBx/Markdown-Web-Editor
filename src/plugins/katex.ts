@@ -1,7 +1,6 @@
 import katex from 'katex'
 import globals from '../globals'
 
-
 let katex_options = {
   displayMode: true,
 	throwOnError: true,
@@ -32,7 +31,7 @@ export default class {
 
       div.innerText = "Empty"
       div.value = "Empty"
-      this.config.show_popup(div,render )
+      div.onclick = (e) => { this.config.show_popup(div,render) }
 
       return div;
     }
