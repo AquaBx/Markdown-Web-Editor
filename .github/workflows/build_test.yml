@@ -29,11 +29,11 @@ jobs:
 
           - os: windows
             target: x86_64-pc-windows-msvc
-            args: -b nsis
+            args: ""
 
           - os: windows
             target: aarch64-pc-windows-msvc
-            args: --bundle nsis
+            args: ""
 
             
     runs-on: ${{ matrix.os }}-latest
