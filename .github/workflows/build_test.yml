@@ -33,7 +33,7 @@ jobs:
 
           - os: windows
             target: aarch64-pc-windows-msvc
-            args: -b nsis
+            args: --bundle nsis
 
             
     runs-on: ${{ matrix.os }}-latest
@@ -65,4 +65,4 @@ jobs:
       - name: test tauri build
         run: |
             cd src-tauri
-            cargo build -t ${{ matrix.target }} ${{ matrix.args }}
+            cargo build --target ${{ matrix.target }} ${{ matrix.args }}
