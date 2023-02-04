@@ -95,6 +95,8 @@ html,body {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+::-webkit-scrollbar-corner{display: none;}
+
 .container{
 	margin:auto;
 	overflow: auto;
