@@ -71,8 +71,13 @@ function save(e){
   });
 }
 
-function export_file(){
-  export_file_pdf(title,document.querySelector("#editorjs"))
+function export_file(e){
+  window.print()
+  // editor.save().then((outputData) => {
+  //   export_file_pdf(title,outputData)
+  // }).catch((error) => {
+  //   console.log('Saving failed: ', error)
+  // });
 }
 
 let popup_ref:HTMLElement
@@ -81,21 +86,20 @@ let popup_function:any
 function show_popup(value:HTMLElement,sanitizer:any){
   popup_ref = value
   popup_function = sanitizer
-  console.log(popup_ref)
 }
 
 </script>
-<div class="container glass_component">
-  <div id="toolbar" class="no-print">
-    <input id="title" bind:value="{title}" placeholder="Enter a filename">
-    <a href="#." on:click={save}>save</a>
-    <a href="#." on:click={export_file}>export</a>
+  <div class="container glass_component">
+    <div id="toolbar" class="no-print">
+      <input id="title" bind:value="{title}" placeholder="Enter a filename">
+      <a href="#." on:click={save}>save</a>
+      <a href="#." on:click={export_file}>export</a>
+    </div>
+    
+    
+    <div id="editorjs" ></div>
   </div>
-
   <Preview bind:ref={popup_ref} bind:render_func={popup_function}></Preview>
-
-  <div id="editorjs" ></div>
-</div>
 
 <style scoped>
 
