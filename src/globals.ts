@@ -25,7 +25,7 @@ class datas {
             let text = await readTextFile(`${dir}settings.json`)
             let json:{[key: string]: string} = JSON.parse(text)
             for (let key in json){
-                if (key in this.contents) this.contents[key] = json[key]
+                this.contents[key] = json[key]
             }
         }
         catch(e){

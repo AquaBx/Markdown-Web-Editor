@@ -7,7 +7,6 @@
 
   (async function() {
     waitload = await globals.load()
-    console.log(waitload)
   })()
 
   let navigation_tools = [
@@ -31,7 +30,7 @@
 
 {#if waitload}
 <main>
-  <slot/>
+  <slot></slot>
 </main>
 {/if}
 
