@@ -15,7 +15,8 @@
         // 'draw',
         // 'calc',
         // 'deepl',
-        'settings'
+        'pdf',
+        'settings',
     ]
   
 </script>
