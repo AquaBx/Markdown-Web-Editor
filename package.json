@@ -23,7 +23,8 @@
     "deepl-node": "^1.7.5",
     "jspdf": "^2.5.1",
     "katex": "^0.16.4",
-    "mermaid": "^10.0.0"
+    "mermaid": "^10.0.0",
+    "pdfjs-dist": "^3.3.122"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.1",

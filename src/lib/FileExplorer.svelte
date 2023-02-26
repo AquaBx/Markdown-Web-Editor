@@ -16,10 +16,18 @@
 <div class="container glass_component">
     <div class="flexbox">
         {#each files as file}
-        <a href="/doc#{file.name}">
-            <Icon type={file.name?.split(".").at(-2)} ></Icon>
-            {file.name}
-        </a>
+            {#if file.name?.split(".").at(-2) === "doc"}
+                <a href="/doc#{file.name}">
+                    <Icon type={file.name?.split(".").at(-2)} ></Icon>
+                    {file.name}
+                </a>
+            {:else}
+                <a href="/pdf#{file.name}"> 
+                    <Icon type={file.name?.split(".").at(-2)} ></Icon>
+                    {file.name}
+                </a>
+            {/if}
+                
         {/each}
     </div>
 </div>
