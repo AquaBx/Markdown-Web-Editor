@@ -6,6 +6,7 @@
   import globals from '../../globals';
   import {getDocument,GlobalWorkerOptions,renderTextLayer} from 'pdfjs-dist'
   import {readBinaryFile} from '@tauri-apps/api/fs'
+    import { PDFDocumentProxy, type RenderParameters } from 'pdfjs-dist/types/src/display/api';
   let directory = globals.contents["directory"]
   var isPen = false;
 
@@ -46,17 +47,23 @@ document.body.addEventListener(
     
     function create_canva(){
       let canva = document.createElement("canvas")
-      canva.onpointermove = (e) => {
+      canva.onpointermove = (e: PointerEvent) => {
         let x = e.layerX
         let y = e.layerY
-        
+
         if (e.pressure === 0 || e.pointerType === "touch"){
           //
         }
         else{
-          let lastx = parseInt( canva.getAttribute("lastx") )
-          let lasty = parseInt( canva.getAttribute("lasty") )
+          let lastx = parseInt( canva.getAttribute("lastx") as string )
+          let lasty = parseInt( canva.getAttribute("lasty") as string )
           let ctx = canva.getContext("2d");
+
+          if (ctx === null){
+            console.trace("ctx null")
+            return
+          }
+
           ctx.beginPath();
           ctx.moveTo(lastx, lasty);
           ctx.lineTo(x, y);
@@ -72,15 +79,16 @@ document.body.addEventListener(
     }
 
     let file = document.location.hash.substring(1);
-    (async function(){
+    (async function() {
       let text = await readBinaryFile(directory+"/"+file)
 
-      var loadingTask = getDocument(text);
+      let loadingTask = getDocument(text);
 
       let pdf = await loadingTask.promise
       var scale = 1.3;
       for (let i=1; i<=pdf.numPages;i++){
         let page = await pdf.getPage(i)
+        PDFDocumentProxy
         
         document.body.style.setProperty('--scale-factor', scale.toString());
         var viewport = page.getViewport({ scale: scale, });
@@ -105,7 +113,7 @@ document.body.addEventListener(
         div_page.appendChild(canvas)
         div_page.appendChild(layer)
         div_page.appendChild(anotlayer)
-        document.querySelector("#pdf").appendChild(div_page)
+        document.querySelector("#pdf")?.appendChild(div_page)
 
         var context = canvas.getContext('2d');
 
@@ -125,7 +133,7 @@ document.body.addEventListener(
           viewport: viewport
         };
 
-        page.render(renderContext);
+        page.render(renderContext as RenderParameters);
         
         let textContent = await page.getTextContent()
 
@@ -146,7 +154,7 @@ document.body.addEventListener(
           viewport: viewport,
         })
 
-        textlayer._textDivs.forEach(element => {
+        textlayer._textDivs.forEach((element: HTMLElement) => {
           element.style.position = "absolute"
           element.style.color = "transparent"
         });
