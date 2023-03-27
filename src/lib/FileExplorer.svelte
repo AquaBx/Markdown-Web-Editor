@@ -27,7 +27,6 @@
                     {file.name}
                 </a>
             {/if}
-                
         {/each}
     </div>
 </div>
