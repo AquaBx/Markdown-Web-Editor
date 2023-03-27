@@ -24,5 +24,11 @@ export default defineConfig({
     minify: !process.env.TAURI_DEBUG ? "esbuild" : true,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
+	rollupOptions:{
+		external:[
+
+			"pdfjs-dist/types/src/display/api"
+		]
+	}
   },
 });
