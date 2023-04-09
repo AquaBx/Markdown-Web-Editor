@@ -68,8 +68,8 @@ jobs:
       - name: installation modules nodejs
         run: npm install
       
-      # - uses:  AquaBx/tauri-action
-      - uses: AquaBx/tauri-action@v0.0.6-alpha
+      # - uses:  tauri-apps/tauri-action
+      - uses: tauri-apps/tauri-action@dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
